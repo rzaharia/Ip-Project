@@ -69,7 +69,6 @@
     <ClCompile Include="Car.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
-    <ClCompile Include="UpdateManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -77,7 +76,6 @@
   <ItemGroup>
     <ClInclude Include="Car.h" />
     <ClInclude Include="Map.h" />
-    <ClInclude Include="UpdateManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

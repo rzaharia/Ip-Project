@@ -5,16 +5,28 @@
 class Map
 {
 public:
-	Map();
+	Map(std::string path);
 	~Map();
+	struct mapData
+	{
+		short int numberOfRoads;
+		short int numberOfPointPerRoad[10];
+		sf::Vector2f roadPoints[10][100];
+	};
 	void draw(sf::RenderWindow &window);
-	sf::Vector2f GetPlaterStartPositions();
+	void setNumberofPlayers(short int numberOfPlayers);
+	short int getNumberOfPlayers();
+	sf::Vector2f GetPlayerStartPositions();
+	mapData GetBoundaryPoints();
+	
 private:
-	void Initialise();
+	void Initialise(std::string path);
+	short int playerCount;//Used by get location
+	short int numberOfPlayers;
+	mapData data;//Information about road limiters(points)
 	sf::Texture texture;
 	sf::Sprite sprite;
-	sf::Vector2f playerStartPosition[6];
+	sf::Vector2f playerStartPosition[10];
 	sf::Vector2f finishLocation[2];
-	short int playerCount;
 };
 

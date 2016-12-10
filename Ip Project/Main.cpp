@@ -1,18 +1,17 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "UpdateManager.h"
 #include "Car.h"
 #include "Map.h"
 #include <fstream>
 int main()
 {
-	UpdateManager updateManager;
-	Map map;
-	Car car("car.png",map.GetPlaterStartPositions());
+	Map map("map");
+	Car car1("car.png",map.GetPlayerStartPositions());
 	sf::Clock clock;
 	sf::Time elapsedTime;
+	float time = 0;
 
-	sf::RenderWindow window(sf::VideoMode(1024, 767), "IpProject!");
+	sf::RenderWindow window(sf::VideoMode(1024, 767), "Madness drivers!");
 
 	while (window.isOpen())
 	{
@@ -24,11 +23,16 @@ int main()
 		}
 
 		elapsedTime = clock.restart();
-		updateManager.TimeManagement(elapsedTime.asSeconds());
+		time += elapsedTime.asSeconds();
+		if (time > 0.5)
+		{
+			time -= 0.5;
+			car1.setLocationByAdding_Subs(1, 2);
 
+		}
 		window.clear();
 		map.draw(window);
-		car.draw(window);
+		car1.draw(window);
 		window.display();
 	}
 
