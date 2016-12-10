@@ -1,16 +1,19 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "UpdateManager.h"
+#include "Car.h"
+#include "Map.h"
+#include <fstream>
 
 int main()
 {
 	UpdateManager updateManager;
+	Map map;
+	Car car("car.png",map.GetPlaterStartPositions());
 	sf::Clock clock;
 	sf::Time elapsedTime;
 
-	sf::RenderWindow window(sf::VideoMode(500, 500), "SFML works!");
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
+	sf::RenderWindow window(sf::VideoMode(1024, 767), "IpProject!");
 
 	while (window.isOpen())
 	{
@@ -25,7 +28,8 @@ int main()
 		updateManager.TimeManagement(elapsedTime.asSeconds());
 
 		window.clear();
-		window.draw(shape);
+		map.draw(window);
+		car.draw(window);
 		window.display();
 	}
 
