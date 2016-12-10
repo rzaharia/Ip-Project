@@ -9,10 +9,26 @@ Map::Map()
 	sprite.setTexture(texture);
 	texture.setSmooth(true);
 	playerCount = 0;
-	playerStartPosition[0].x = 470;
-	playerStartPosition[0].y = 75;
-	
+	Initialise();
 }
+
+void Map::Initialise()
+{
+	std::ifstream f("textures/map.txt");
+	int n;
+	for (int i = 0; i < 2; i++)
+	{
+		f >> finishLocation[i].x;
+		f >> finishLocation[i].y;
+	}
+	f >> n;
+	for (int i = 0; i < 2*n; i++)
+	{
+		f >> playerStartPosition[i].x;
+		f >> playerStartPosition[i].y;
+	}
+}
+
 
 
 Map::~Map()

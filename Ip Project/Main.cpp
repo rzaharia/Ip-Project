@@ -4,7 +4,6 @@
 #include "Car.h"
 #include "Map.h"
 #include <fstream>
-
 int main()
 {
 	UpdateManager updateManager;
