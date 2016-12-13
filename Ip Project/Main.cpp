@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Car.h"
 #include "Map.h"
+#include "ParticleSystem.h"
 #include <fstream>
 int main()
 {
@@ -11,10 +12,38 @@ int main()
 	sf::Time elapsedTime;
 	float time = 0;
 
-	sf::RenderWindow window(sf::VideoMode(1024, 767), "Madness drivers!");
-
+	sf::RenderWindow window;
+	window.create(sf::VideoMode(1024, 767), "Madness drivers!");//Menu
+	ParticleSystem particles(1000);
 	while (window.isOpen())
 	{
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+			{
+				window.close();
+				goto mainGame;
+				//goto end;
+			}
+		}
+		sf::Vector2i mouse = sf::Mouse::getPosition(window);
+		particles.setEmitter(window.mapPixelToCoords(mouse));
+
+		sf::Time elapsed = clock.restart();
+		particles.update(elapsed);
+
+
+		window.clear();
+		window.draw(particles);
+		window.display();
+	}
+	goto end;
+	mainGame:
+	window.create(sf::VideoMode(1024, 767), "Madness drivers!");
+	while (window.isOpen())
+	{
+		//std::cout << "asd";
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
@@ -35,6 +64,6 @@ int main()
 		car1.draw(window);
 		window.display();
 	}
-
+	end:
 	return 0;
 }
