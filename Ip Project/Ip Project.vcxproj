@@ -67,6 +67,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Car.cpp" />
+    <ClCompile Include="ControllerCar.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Menu.cpp" />
@@ -93,6 +94,7 @@
     <Import Project="..\packages\sfml-audio.2.3.2.0\build\native\sfml-audio.targets" Condition="Exists('..\packages\sfml-audio.2.3.2.0\build\native\sfml-audio.targets')" />
     <Import Project="..\packages\sfml-network.redist.2.3.2.0\build\native\sfml-network.redist.targets" Condition="Exists('..\packages\sfml-network.redist.2.3.2.0\build\native\sfml-network.redist.targets')" />
     <Import Project="..\packages\sfml-network.2.3.2.0\build\native\sfml-network.targets" Condition="Exists('..\packages\sfml-network.2.3.2.0\build\native\sfml-network.targets')" />
+    <Import Project="..\packages\Box2D.2.3.0\build\native\Box2D.targets" Condition="Exists('..\packages\Box2D.2.3.0\build\native\Box2D.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -108,5 +110,6 @@
     <Error Condition="!Exists('..\packages\sfml-audio.2.3.2.0\build\native\sfml-audio.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sfml-audio.2.3.2.0\build\native\sfml-audio.targets'))" />
     <Error Condition="!Exists('..\packages\sfml-network.redist.2.3.2.0\build\native\sfml-network.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sfml-network.redist.2.3.2.0\build\native\sfml-network.redist.targets'))" />
     <Error Condition="!Exists('..\packages\sfml-network.2.3.2.0\build\native\sfml-network.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sfml-network.2.3.2.0\build\native\sfml-network.targets'))" />
+    <Error Condition="!Exists('..\packages\Box2D.2.3.0\build\native\Box2D.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Box2D.2.3.0\build\native\Box2D.targets'))" />
   </Target>
 </Project>
