@@ -13,6 +13,5 @@ public:
 private:
 	sf::Texture texture;
 	sf::Sprite sprite;
-	int lives;// etc....
+	int lives;
 };
-

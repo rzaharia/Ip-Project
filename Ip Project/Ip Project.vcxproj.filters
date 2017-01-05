@@ -16,6 +16,9 @@
     <Filter Include="Source Files\Controllers">
       <UniqueIdentifier>{e2178816-1530-4fda-8261-985ff93b8ce1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Models">
+      <UniqueIdentifier>{41eb92e4-2d82-400b-ab11-86677ea13fe5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -39,8 +42,14 @@
     <ClCompile Include="Tire.cpp">
       <Filter>Source Files\Controllers</Filter>
     </ClCompile>
-    <ClCompile Include="HelloWorld.cpp">
+    <ClCompile Include="TestBox2D.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GroundArea.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="FixtureUserData.cpp">
+      <Filter>Source Files\Models</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -57,6 +66,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Menu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FixtureUserData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

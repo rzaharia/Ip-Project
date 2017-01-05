@@ -8,7 +8,7 @@
 int main()
 {
 	Map map("map");
-	Car car1("car.png",map.GetPlayerStartPositions());
+	Car car1("car.png", map.GetPlayerStartPositions());
 	Menu menu(true, "menu_background", "Madness drivers!", 1024, 600);
 	sf::Clock clock;
 	sf::Time elapsedTime;
@@ -69,7 +69,7 @@ int main()
 
 	///Game window
 	goto end;
-	mainGame:
+mainGame:
 	window.create(sf::VideoMode(1024, 767), "Madness drivers!");
 	while (window.isOpen())
 	{
@@ -94,6 +94,6 @@ int main()
 		car1.draw(window);
 		window.display();
 	}
-	end:
+end:
 	return 0;
 }
