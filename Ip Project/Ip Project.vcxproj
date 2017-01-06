@@ -70,6 +70,7 @@
     <ClCompile Include="box.cpp" />
     <ClCompile Include="Car.cpp" />
     <ClCompile Include="FixtureUserData.cpp" />
+    <ClCompile Include="Get.cpp" />
     <ClCompile Include="GroundArea.cpp" />
     <ClCompile Include="TestBox2D.cpp" />
     <ClCompile Include="Main.cpp" />
