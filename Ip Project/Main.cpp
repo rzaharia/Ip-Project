@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "Car.h"
+#include "box.h"
 #include "Map.h"
 #include "ParticleSystem.h"
 #include "Menu.h"
@@ -8,7 +8,7 @@
 int main()
 {
 	Map map("map");
-	Car car1("car.png", map.GetPlayerStartPositions());
+	box car1("car.png", map.GetPlayerStartPositions());
 	Menu menu(true, "menu_background", "Madness drivers!", 1024, 600);
 	sf::Clock clock;
 	sf::Time elapsedTime;
@@ -70,7 +70,7 @@ int main()
 	///Game window
 	goto end;
 mainGame:
-	window.create(sf::VideoMode(1024, 767), "Madness drivers!");
+	window.create(sf::VideoMode(1024, 767), "Madness drivers!", sf::Style::Titlebar | sf::Style::Close);
 	while (window.isOpen())
 	{
 		//std::cout << "asd";

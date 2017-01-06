@@ -4,7 +4,7 @@
 class FixtureUserData {
 	fixtureUserDataType objectValue;
 protected:
-	FixtureUserData(fixtureUserDataType type) : objectValue(type) {};
+	FixtureUserData(fixtureUserDataType type);
 public:
 	virtual fixtureUserDataType getType();
 	virtual ~FixtureUserData();

@@ -23,6 +23,16 @@ class Car {
 	b2Body* chassis;
 	std::vector<Tire*> tires;
 	b2RevoluteJoint *frontLeftJoint, *frontRightJoint;
+#pragma region Tire specifications
+
+	float maxAccelerationSpeed = MAX_SPEED;
+	float maxAccelerationReverseSpeed = -1.0f * MAX_SPEED / 6.25f;
+	float backTireMaxLateralForce = BACK_TIRE_FORCE_LATERAL;
+	float backTireMaxDriveForce = BACK_TIRE_FORCE_TRACTION;
+	float frontTireMaxLateralForce = FRONT_TIRE_FORCE;
+	float frontTireMaxDriveForce = BACK_TIRE_FORCE_TRACTION;
+
+#pragma endregion
 public:
 	void CreateTireAndFixItToCarBody(b2World* world, b2RevoluteJointDef bodyJoint, b2Vec2 anchorPosition, bool backTireOrNo);
 	Car(b2World* world);

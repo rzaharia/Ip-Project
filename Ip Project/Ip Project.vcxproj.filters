@@ -19,12 +19,21 @@
     <Filter Include="Source Files\Models">
       <UniqueIdentifier>{41eb92e4-2d82-400b-ab11-86677ea13fe5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Controllers\Car">
+      <UniqueIdentifier>{c21ceb5c-ad54-49fd-ab8c-891b9dfeb2f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Controllers">
+      <UniqueIdentifier>{f51b4a2e-3074-4732-8cb9-a98e6f72af78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Controllers\Car">
+      <UniqueIdentifier>{8f313070-ce15-46e2-b6b1-ed005433adb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Models">
+      <UniqueIdentifier>{797cf29e-d276-4159-9a03-bfad53dc8a62}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Car.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Map.cpp">
@@ -36,12 +45,6 @@
     <ClCompile Include="Menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ControllerCar.cpp">
-      <Filter>Source Files\Controllers</Filter>
-    </ClCompile>
-    <ClCompile Include="Tire.cpp">
-      <Filter>Source Files\Controllers</Filter>
-    </ClCompile>
     <ClCompile Include="TestBox2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -51,14 +54,20 @@
     <ClCompile Include="FixtureUserData.cpp">
       <Filter>Source Files\Models</Filter>
     </ClCompile>
+    <ClCompile Include="Tire.cpp">
+      <Filter>Source Files\Controllers\Car</Filter>
+    </ClCompile>
+    <ClCompile Include="Car.cpp">
+      <Filter>Source Files\Controllers\Car</Filter>
+    </ClCompile>
+    <ClCompile Include="box.cpp">
+      <Filter>Source Files\Controllers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Car.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Map.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -68,8 +77,26 @@
     <ClInclude Include="Menu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GroundArea.h">
+      <Filter>Header Files\Models</Filter>
+    </ClInclude>
     <ClInclude Include="FixtureUserData.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="fixtureType.h">
+      <Filter>Header Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="CarTire.h">
+      <Filter>Header Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Tire.h">
+      <Filter>Header Files\Controllers\Car</Filter>
+    </ClInclude>
+    <ClInclude Include="Car.h">
+      <Filter>Header Files\Controllers\Car</Filter>
+    </ClInclude>
+    <ClInclude Include="box.h">
+      <Filter>Header Files\Controllers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

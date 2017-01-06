@@ -6,5 +6,5 @@ public:
 	float frictionModifier;
 	bool outOfCourse;
 
-	GroundArea(float friction, bool course) : FixtureUserData(GROUND_AREA) {};
+	GroundArea(float friction, bool course);
 };

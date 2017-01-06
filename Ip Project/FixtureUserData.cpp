@@ -1,12 +1,10 @@
-#include "fixtureType.h"
+#include "FixtureUserData.h"
 
-class FixtureUserData{
-		fixtureUserDataType objectValue;
-	protected:
-		FixtureUserData(fixtureUserDataType type) : objectValue(type) {}
-	public:
-		virtual fixtureUserDataType getType() { 
-			return objectValue; 
-		}
-		virtual ~FixtureUserData() {}
-	};
+FixtureUserData::FixtureUserData(fixtureUserDataType type) : objectValue(type) {
+}
+
+fixtureUserDataType FixtureUserData::getType() {
+	return objectValue;
+}
+FixtureUserData::~FixtureUserData() {
+}

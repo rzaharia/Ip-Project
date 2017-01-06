@@ -67,8 +67,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="box.cpp" />
     <ClCompile Include="Car.cpp" />
-    <ClCompile Include="ControllerCar.cpp" />
     <ClCompile Include="FixtureUserData.cpp" />
     <ClCompile Include="GroundArea.cpp" />
     <ClCompile Include="TestBox2D.cpp" />
@@ -82,11 +82,16 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="box.h" />
     <ClInclude Include="Car.h" />
+    <ClInclude Include="CarTire.h" />
+    <ClInclude Include="fixtureType.h" />
     <ClInclude Include="FixtureUserData.h" />
+    <ClInclude Include="GroundArea.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="ParticleSystem.h" />
+    <ClInclude Include="Tire.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
