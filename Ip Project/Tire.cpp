@@ -2,12 +2,10 @@
 #include <vector>
 #include <set>
 #include "GroundArea.h"
-#include "CarTire.h"
+#include "CarTire.h""
 #include "Tire.h"
 
-	class Tire {
-	#define DESIRED_TORQUE 15.0f;
-
+class Tire {
 	public:
 		b2Body* rubber;
 		std::set<GroundArea*> groundContactAreas;
@@ -33,11 +31,11 @@
 			rubber->GetWorld()->DestroyBody(rubber);
 		}
 
-		void setCharacteristics(float maxForwardSpeed, float maxBackwardSpeed, float maxDriveForce, float maxLateralImpulse) {
-			maxAccelerationSpeed = maxForwardSpeed;
-			maxAccelerationReverseSpeed = maxBackwardSpeed;
-			maxAccelerationForce = maxDriveForce;
-			maxLateralForce = maxLateralImpulse;
+		void setCharacteristics(float maxAccelerationSpeed, float maxAccelerationReverseSpeed, float maxAccelerationForce, float maxLateralForce) {
+			maxAccelerationSpeed = maxAccelerationSpeed;
+			maxAccelerationReverseSpeed = maxAccelerationReverseSpeed;
+			maxAccelerationForce = maxAccelerationForce;
+			maxLateralForce = maxLateralForce;
 		}
 
 		void addGroundArea(GroundArea* groundArea) { 

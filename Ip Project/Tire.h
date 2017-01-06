@@ -1,4 +1,8 @@
 #pragma once
+#include <set>
+#include "GroundArea.h"
+
+#define DESIRED_TORQUE 15.0f
 
 enum {
 	LEFT = 0x1,
@@ -8,8 +12,6 @@ enum {
 };
 
 class Tire {
-#define DESIRED_TORQUE 15.0f;
-
 public:
 	b2Body* rubber;
 	std::set<GroundArea*> groundContactAreas;
@@ -21,8 +23,8 @@ public:
 
 	Tire(b2World* raceTrack);
 	~Tire();
-
-	void setCharacteristics(float maxForwardSpeed, float maxBackwardSpeed, float maxDriveForce, float maxLateralImpulse);
+	
+	void setCharacteristics(float maxAccelerationSpeed, float maxAccelerationReverseSpeed, float maxAccelerationForce, float maxLateralForce);
 
 	void addGroundArea(GroundArea* groundArea);
 	void removeGroundArea(GroundArea* groundArea);
