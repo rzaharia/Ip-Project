@@ -23,7 +23,7 @@ void Map::Initialise(std::string path)
 	}
 	f >> n;
 	numberOfPlayers = n;
-	for (int i = 0; i < 2*n; i++)
+	for (int i = 0; i < n; i++)
 	{
 		f >> playerStartPosition[i].x;
 		f >> playerStartPosition[i].y;
