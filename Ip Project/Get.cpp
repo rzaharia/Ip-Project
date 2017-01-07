@@ -24,11 +24,12 @@ double min ( double x, double y ) {
     return x < y ? x : y;
 }
 //angle in degree
+
 double Get ( Vector2f pos, double angle ) {
     if ( !haveAttempts() )
         return 0;// No more attempts
 
-    if ( !isIn ( pos ) )
+	if ( !isIn ( pos ) )
         return -1;// position is outside the map
 
     numberOfTries++;

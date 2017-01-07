@@ -18,6 +18,7 @@ public:
 	short int getNumberOfPlayers();
 	sf::Vector2f GetPlayerStartPositions();
 	mapData GetBoundaryPoints();
+	sf::Vector2f finishLocation[2];
 	
 private:
 	void Initialise(std::string path);
@@ -27,6 +28,5 @@ private:
 	sf::Texture texture;
 	sf::Sprite sprite;
 	sf::Vector2f playerStartPosition[10];
-	sf::Vector2f finishLocation[2];
 };
 
