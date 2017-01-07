@@ -24,7 +24,7 @@ double min ( double x, double y ) {
     return x < y ? x : y;
 }
 //angle in degree
-
+/*
 double Get ( Vector2f pos, double angle ) {
     if ( !haveAttempts() )
         return 0;// No more attempts
@@ -55,4 +55,4 @@ double Get ( Vector2f pos, double angle ) {
     }
 
     return ret;
-}
+}*/
