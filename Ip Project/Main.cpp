@@ -73,7 +73,6 @@ mainGame:
 	window.create(sf::VideoMode(1024, 767), "Madness drivers!", sf::Style::Titlebar | sf::Style::Close);
 	while (window.isOpen())
 	{
-		//std::cout << "asd";
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
