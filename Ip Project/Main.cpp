@@ -5,9 +5,14 @@
 #include "ParticleSystem.h"
 #include "Menu.h"
 #include <fstream>
+//#include "Get.cpp"
 int main()
 {
-	Map map("map");
+	Map map;
+	map.Initialise("map");
+	//currentMap = map;
+
+
 	box car1("car.png", map.GetPlayerStartPositions());
 	Menu menu(true, "menu_background", "Madness drivers!", 1024, 600);
 	sf::Clock clock;
@@ -74,10 +79,16 @@ mainGame:
 	while (window.isOpen())
 	{
 		sf::Event event;
+		//sf::Vector2i mouse = sf::Mouse::getPosition(window);
 		while (window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
+			/*if (event.type == sf::Event::MouseButtonPressed)
+			{
+				std::cout << mouse.x << "," << mouse.y << "\n";
+				std::cout << map.isIn(mouse.x, mouse.y)<<"\n";
+			}*/
 		}
 
 		elapsedTime = clock.restart();

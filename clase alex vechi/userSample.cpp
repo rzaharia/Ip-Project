@@ -1,7 +1,7 @@
 #include "Madness_drivers.h"
 
 
-int main() {
+int otherMain() {
     Vector2f myPos = Start(), newPos = myPos, start = myPos;
     double angle, distance;
     int random;

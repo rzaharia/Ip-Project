@@ -69,6 +69,7 @@
   <ItemGroup>
     <ClCompile Include="box.cpp" />
     <ClCompile Include="Car.cpp" />
+    <ClCompile Include="enums.cpp" />
     <ClCompile Include="FixtureUserData.cpp" />
     <ClCompile Include="GroundArea.cpp" />
     <ClCompile Include="TestBox2D.cpp" />

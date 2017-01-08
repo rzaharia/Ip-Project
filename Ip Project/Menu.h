@@ -1,3 +1,5 @@
+#ifndef Menu_H
+#define Menu_H
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #pragma once
@@ -26,3 +28,4 @@ private:
 	sf::Text buttons[3];
 	bool soundsON, musicON;
 };
+#endif

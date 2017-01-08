@@ -1,3 +1,5 @@
+#ifndef box_H
+#define box_H
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -15,3 +17,4 @@ private:
 	sf::Sprite sprite;
 	int lives;
 };
+#endif
