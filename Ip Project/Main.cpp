@@ -4,12 +4,15 @@
 #include "Map.h"
 #include "ParticleSystem.h"
 #include "Menu.h"
+#include "SomeFunctions.h"
 #include <fstream>
 //#include "Get.cpp"
 int main()
 {
 	Map map;
 	map.Initialise("map");
+	SomeFunctions  someFunctions;
+	someFunctions.initialise(map);
 	//currentMap = map;
 
 
