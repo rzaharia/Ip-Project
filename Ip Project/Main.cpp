@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <Box2D.h>
 #include <iostream>
 #include "box.h"
 #include "Map.h"
@@ -6,14 +7,22 @@
 #include "Menu.h"
 #include "SomeFunctions.h"
 #include <fstream>
+#include "Car.h"
+#include "DestructionListener.h"
 //#include "Get.cpp"
 int main()
 {
 	Map map;
 	map.Initialise("map");
-	SomeFunctions  someFunctions;
-	someFunctions.initialise(map);
+	//SomeFunctions  someFunctions;
+	//someFunctions.initialise(map);
 	//currentMap = map;
+
+	b2Vec2 Gravity(0.f, 0.f);
+	b2World *World = new b2World(Gravity);
+	DestructionListener destructionListener;
+	World->SetDestructionListener(&destructionListener);
+	Car car(World);
 
 
 	box car1("car.png", map.GetPlayerStartPositions());
