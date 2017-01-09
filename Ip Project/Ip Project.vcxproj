@@ -38,17 +38,18 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup>
-    <NuGetPackageImportStamp>ef5c2acb</NuGetPackageImportStamp>
-  </PropertyGroup>
+  <PropertyGroup />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>./</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>./lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Box2D.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -66,20 +67,36 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="box.cpp" />
     <ClCompile Include="Car.cpp" />
+    <ClCompile Include="DestructionListener.cpp" />
+    <ClCompile Include="enums.cpp" />
+    <ClCompile Include="FixtureUserData.cpp" />
+    <ClCompile Include="GroundArea.cpp" />
+    <ClCompile Include="SomeFunctions.cpp" />
+    <ClCompile Include="TestBox2D.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
+    <ClCompile Include="Tire.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="box.h" />
     <ClInclude Include="Car.h" />
+    <ClInclude Include="CarTire.h" />
+    <ClInclude Include="DestructionListener.h" />
+    <ClInclude Include="fixtureType.h" />
+    <ClInclude Include="FixtureUserData.h" />
+    <ClInclude Include="GroundArea.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="ParticleSystem.h" />
+    <ClInclude Include="SomeFunctions.h" />
+    <ClInclude Include="Tire.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
@@ -93,6 +110,7 @@
     <Import Project="..\packages\sfml-audio.2.3.2.0\build\native\sfml-audio.targets" Condition="Exists('..\packages\sfml-audio.2.3.2.0\build\native\sfml-audio.targets')" />
     <Import Project="..\packages\sfml-network.redist.2.3.2.0\build\native\sfml-network.redist.targets" Condition="Exists('..\packages\sfml-network.redist.2.3.2.0\build\native\sfml-network.redist.targets')" />
     <Import Project="..\packages\sfml-network.2.3.2.0\build\native\sfml-network.targets" Condition="Exists('..\packages\sfml-network.2.3.2.0\build\native\sfml-network.targets')" />
+    <Import Project="..\packages\Box2D.2.3.0\build\native\Box2D.targets" Condition="Exists('..\packages\Box2D.2.3.0\build\native\Box2D.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -108,5 +126,6 @@
     <Error Condition="!Exists('..\packages\sfml-audio.2.3.2.0\build\native\sfml-audio.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sfml-audio.2.3.2.0\build\native\sfml-audio.targets'))" />
     <Error Condition="!Exists('..\packages\sfml-network.redist.2.3.2.0\build\native\sfml-network.redist.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sfml-network.redist.2.3.2.0\build\native\sfml-network.redist.targets'))" />
     <Error Condition="!Exists('..\packages\sfml-network.2.3.2.0\build\native\sfml-network.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\sfml-network.2.3.2.0\build\native\sfml-network.targets'))" />
+    <Error Condition="!Exists('..\packages\Box2D.2.3.0\build\native\Box2D.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Box2D.2.3.0\build\native\Box2D.targets'))" />
   </Target>
 </Project>

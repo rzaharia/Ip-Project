@@ -1,14 +1,22 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "Car.h"
+#include "box.h"
 #include "Map.h"
 #include "ParticleSystem.h"
 #include "Menu.h"
+#include "SomeFunctions.h"
 #include <fstream>
+//#include "Get.cpp"
 int main()
 {
-	Map map("map");
-	Car car1("car.png",map.GetPlayerStartPositions());
+	Map map;
+	map.Initialise("map");
+	SomeFunctions  someFunctions;
+	someFunctions.initialise(map);
+	//currentMap = map;
+
+
+	box car1("car.png", map.GetPlayerStartPositions());
 	Menu menu(true, "menu_background", "Madness drivers!", 1024, 600);
 	sf::Clock clock;
 	sf::Time elapsedTime;
@@ -69,16 +77,21 @@ int main()
 
 	///Game window
 	goto end;
-	mainGame:
-	window.create(sf::VideoMode(1024, 767), "Madness drivers!");
+mainGame:
+	window.create(sf::VideoMode(1024, 767), "Madness drivers!", sf::Style::Titlebar | sf::Style::Close);
 	while (window.isOpen())
 	{
-		//std::cout << "asd";
 		sf::Event event;
+		//sf::Vector2i mouse = sf::Mouse::getPosition(window);
 		while (window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
+			/*if (event.type == sf::Event::MouseButtonPressed)
+			{
+				std::cout << mouse.x << "," << mouse.y << "\n";
+				std::cout << map.isIn(mouse.x, mouse.y)<<"\n";
+			}*/
 		}
 
 		elapsedTime = clock.restart();
@@ -94,6 +107,6 @@ int main()
 		car1.draw(window);
 		window.display();
 	}
-	end:
+end:
 	return 0;
 }

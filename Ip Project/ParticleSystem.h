@@ -1,3 +1,5 @@
+#ifndef ParticleSystem_H
+#define ParticleSystem_H
 #include <SFML/Graphics.hpp>
 #pragma once
 class ParticleSystem : public sf::Drawable, public sf::Transformable
@@ -25,4 +27,4 @@ private:
 	sf::Time m_lifetime;
 	sf::Vector2f m_emitter;
 };
-
+#endif
