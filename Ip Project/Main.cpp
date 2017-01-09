@@ -17,12 +17,12 @@ int main()
 	//SomeFunctions  someFunctions;
 	//someFunctions.initialise(map);
 	//currentMap = map;
-
+	Car *car;
 	b2Vec2 Gravity(0.f, 0.f);
 	b2World *World = new b2World(Gravity);
 	DestructionListener destructionListener;
 	World->SetDestructionListener(&destructionListener);
-	Car car(World);
+	car = new Car(World);
 
 
 	box car1("car.png", map.GetPlayerStartPositions());

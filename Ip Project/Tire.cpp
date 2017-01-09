@@ -22,10 +22,10 @@ Tire::~Tire() {
 }
 
 void Tire::setCharacteristics(float maxAccelerationSpeed, float maxAccelerationReverseSpeed, float maxAccelerationForce, float maxLateralForce) {
-	maxAccelerationSpeed = maxAccelerationSpeed;
-	maxAccelerationReverseSpeed = maxAccelerationReverseSpeed;
-	maxAccelerationForce = maxAccelerationForce;
-	maxLateralForce = maxLateralForce;
+	Tire::maxAccelerationSpeed = maxAccelerationSpeed;
+	Tire::maxAccelerationReverseSpeed = maxAccelerationReverseSpeed;
+	Tire::maxAccelerationForce = maxAccelerationForce;
+	Tire::maxLateralForce = maxLateralForce;
 }
 
 void Tire::addGroundArea(GroundArea* groundArea) {

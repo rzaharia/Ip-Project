@@ -50,18 +50,21 @@ Car::~Car() {
 		delete tires[i];
 }
 
-void Car::CreateTireAndFixItToCarBody(b2World* world, b2RevoluteJointDef bodyJoint, b2Vec2 anchorPosition, bool backTireOrNo) {
+void Car::CreateTireAndFixItToCarBody(b2World* world, b2RevoluteJointDef &bodyJoint, b2Vec2 anchorPosition, bool backTireOrNo) {
 	Tire* tire = new Tire(world);
+
+	bodyJoint.bodyB = tire->rubber;
+	bodyJoint.localAnchorA = anchorPosition;
 	if (backTireOrNo) {
 		tire->setCharacteristics(maxAccelerationSpeed, maxAccelerationReverseSpeed, backTireMaxDriveForce, backTireMaxLateralForce);
-		bodyJoint.localAnchorA = anchorPosition;
 		world->CreateJoint(&bodyJoint);
-	}
-	else {
+	}else {
 		tire->setCharacteristics(maxAccelerationSpeed, maxAccelerationReverseSpeed, frontTireMaxDriveForce, frontTireMaxLateralForce);
-		(b2RevoluteJoint*)world->CreateJoint(&bodyJoint);
+		if(anchorPosition.x<0)
+			frontLeftJoint = (b2RevoluteJoint*)world->CreateJoint(&bodyJoint);
+		else
+			frontRightJoint = (b2RevoluteJoint*)world->CreateJoint(&bodyJoint);
 	}
-	bodyJoint.bodyB = tire->rubber;
 	tires.push_back(tire);
 }
 
