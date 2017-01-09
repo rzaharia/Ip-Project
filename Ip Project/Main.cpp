@@ -9,11 +9,13 @@
 #include <fstream>
 #include "Car.h"
 #include "DestructionListener.h"
+const float SCALE = 30.f;
 //#include "Get.cpp"
 int main()
 {
 	Map map;
 	map.Initialise("map");
+	sf::Vector2f carStartLocation = map.GetPlayerStartPositions();
 	//SomeFunctions  someFunctions;
 	//someFunctions.initialise(map);
 	//currentMap = map;
@@ -23,9 +25,14 @@ int main()
 	DestructionListener destructionListener;
 	World->SetDestructionListener(&destructionListener);
 	car = new Car(World);
+	
 
 
-	box car1("car.png", map.GetPlayerStartPositions());
+	sf::Texture CarTexture;
+	sf::Sprite Sprite;
+	CarTexture.loadFromFile("textures/car.png");
+
+	//box car1("car.png", map.GetPlayerStartPositions());
 	Menu menu(true, "menu_background", "Madness drivers!", 1024, 600);
 	sf::Clock clock;
 	sf::Time elapsedTime;
@@ -108,12 +115,24 @@ mainGame:
 		if (time > 0.5)
 		{
 			time -= 0.5;
-			car1.setLocationByAdding_Subs(1, 2);
+			//car1.setLocationByAdding_Subs(1, 2);
 
 		}
+		World->Step(1 / 60.f, 8, 3);
 		window.clear();
 		map.draw(window);
-		car1.draw(window);
+		for (b2Body* BodyIterator = World->GetBodyList(); BodyIterator != 0; BodyIterator = BodyIterator->GetNext())
+		{
+			if (BodyIterator->GetType() == b2_dynamicBody)
+			{
+				Sprite.setTexture(CarTexture);
+				Sprite.setOrigin(SCALE * BodyIterator->GetPosition().x, SCALE * BodyIterator->GetPosition().y);
+				Sprite.setPosition(SCALE * BodyIterator->GetPosition().x, SCALE * BodyIterator->GetPosition().y);
+				Sprite.setRotation(BodyIterator->GetAngle() * 180 / b2_pi);
+				window.draw(Sprite);
+			}
+		}
+		//car1.draw(window);
 		window.display();
 	}
 end:
