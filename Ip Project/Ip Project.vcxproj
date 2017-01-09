@@ -69,6 +69,7 @@
   <ItemGroup>
     <ClCompile Include="box.cpp" />
     <ClCompile Include="Car.cpp" />
+    <ClCompile Include="DestructionListener.cpp" />
     <ClCompile Include="enums.cpp" />
     <ClCompile Include="FixtureUserData.cpp" />
     <ClCompile Include="GroundArea.cpp" />
@@ -87,6 +88,7 @@
     <ClInclude Include="box.h" />
     <ClInclude Include="Car.h" />
     <ClInclude Include="CarTire.h" />
+    <ClInclude Include="DestructionListener.h" />
     <ClInclude Include="fixtureType.h" />
     <ClInclude Include="FixtureUserData.h" />
     <ClInclude Include="GroundArea.h" />
