@@ -18,25 +18,11 @@ int main()
 	Map map;
 	map.Initialise("map");
 	sf::Vector2f carStartLocation = map.GetPlayerStartPositions();
-	//SomeFunctions  someFunctions;
-	//someFunctions.initialise(map);
-	//currentMap = map;
 
-	/*
-	Car *car;
-	b2Vec2 Gravity(0.f, 0.f);
-	b2World *World = new b2World(Gravity);
-	DestructionListener destructionListener;
-	World->SetDestructionListener(&destructionListener);
-	car = new Car(World);
-	*/
 	Input *game;
 	game = new Input();
 	//To update the view of the car: game->Car->Update(controlState);
-
-	sf::Texture CarTexture;
-	sf::Sprite Sprite;
-	CarTexture.loadFromFile("textures/car.png");
+	game->car->SetTextures("textures/car.png", "textures/wheel.png");
 
 	//box car1("car.png", map.GetPlayerStartPositions());
 	Menu menu(true, "menu_background", "Madness drivers!", 1024, 600);
@@ -103,16 +89,19 @@ mainGame:
 	window.create(sf::VideoMode(1024, 767), "Madness drivers!", sf::Style::Titlebar | sf::Style::Close);
 	while (window.isOpen())
 	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-			game->Keyboard('w');
-		else
-			game->KeyboardUp('w');
-		game->car->Update(game->controlState);
 		sf::Event event;
 		//sf::Vector2i mouse = sf::Mouse::getPosition(window);
 		while (window.pollEvent(event))
 		{
-			if (event.type == sf::Event::Closed)
+			if (event.type == sf::Event::KeyPressed)
+			{
+				game->Keyboard((char)(event.key.code + (int)'a'));
+			}
+			else if (event.type == sf::Event::KeyReleased)
+			{
+				game->KeyboardUp((char)(event.key.code + (int)'a'));
+			}
+			else if (event.type == sf::Event::Closed)
 				window.close();
 			/*if (event.type == sf::Event::MouseButtonPressed)
 			{
@@ -127,23 +116,13 @@ mainGame:
 		{
 			time -= 0.5;
 			//car1.setLocationByAdding_Subs(1, 2);
-
 		}
 		game->World->Step(1 / 60.f, 8, 3);
 		window.clear();
+
 		map.draw(window);
-		for (b2Body* BodyIterator = game->World->GetBodyList(); BodyIterator != 0; BodyIterator = BodyIterator->GetNext())
-		{
-			if (BodyIterator->GetType() == b2_dynamicBody)
-			{
-				Sprite.setTexture(CarTexture);
-				Sprite.setOrigin(SCALE * BodyIterator->GetPosition().x, SCALE * BodyIterator->GetPosition().y);
-				Sprite.setPosition(SCALE * BodyIterator->GetPosition().x, SCALE * BodyIterator->GetPosition().y);
-				Sprite.setRotation(BodyIterator->GetAngle() * 180 / b2_pi);
-				window.draw(Sprite);
-			}
-		}
-		//car1.draw(window);
+		game->car->Draw(window);
+
 		window.display();
 	}
 end:

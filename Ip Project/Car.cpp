@@ -96,3 +96,26 @@ void Car::Update(int controlState) {
 	frontLeftJoint->SetLimits(newAngle, newAngle);
 	frontRightJoint->SetLimits(newAngle, newAngle);
 }
+
+void Car::Draw(sf::RenderWindow & window)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		sprites[i].setTexture(texture[0]);
+		sprites[i].setOrigin(SCALE * tires[i]->rubber->GetPosition().x, SCALE * tires[i]->rubber->GetPosition().y);
+		sprites[i].setPosition(SCALE * tires[i]->rubber->GetPosition().x, SCALE * tires[i]->rubber->GetPosition().y);
+		sprites[i].setRotation(tires[i]->rubber->GetAngle() * 180 / b2_pi);
+		window.draw(sprites[i]);
+	}
+	sprites[4].setTexture(texture[1]);
+	sprites[4].setOrigin(SCALE * chassis->GetPosition().x, SCALE * chassis->GetPosition().y);
+	sprites[4].setPosition(SCALE * chassis->GetPosition().x, SCALE * chassis->GetPosition().y);
+	sprites[4].setRotation(chassis->GetAngle() * 180 / b2_pi);
+	window.draw(sprites[4]);
+}
+
+void Car::SetTextures(std::string pathCarTexture, std::string pathWheelTexture)
+{
+	texture[1].loadFromFile(pathCarTexture);
+	texture[0].loadFromFile(pathWheelTexture);
+}

@@ -37,6 +37,7 @@ void Input::Keyboard(unsigned char key) {
 	default:
 		break;
 	}
+	car->Update(controlState);  //Added update
 }
 
 void Input::KeyboardUp(unsigned char key) {
@@ -56,6 +57,7 @@ void Input::KeyboardUp(unsigned char key) {
 	default:
 		break;
 	}
+	car->Update(controlState);  //Added update
 }
 
 void Input::handleContact(b2Contact* contact, bool began) {
