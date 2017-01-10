@@ -10,8 +10,8 @@ Tire::Tire(b2World* raceTrack) {
 	bodyDef.type = b2_dynamicBody;
 	rubber = raceTrack->CreateBody(&bodyDef);
 	b2PolygonShape polygonShape;
-	polygonShape.SetAsBox(0.5f, 1.25f);
-	b2Fixture* fixture = rubber->CreateFixture(&polygonShape, 1);//shape, density
+	polygonShape.SetAsBox(0.75f, 1.75f);
+	b2Fixture* fixture = rubber->CreateFixture(&polygonShape, 1);
 	fixture->SetUserData(new CarTire());
 	rubber->SetUserData(this);
 	currentTraction = 1;

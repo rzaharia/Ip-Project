@@ -103,6 +103,11 @@ mainGame:
 	window.create(sf::VideoMode(1024, 767), "Madness drivers!", sf::Style::Titlebar | sf::Style::Close);
 	while (window.isOpen())
 	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+			game->Keyboard('w');
+		else
+			game->KeyboardUp('w');
+		game->car->Update(game->controlState);
 		sf::Event event;
 		//sf::Vector2i mouse = sf::Mouse::getPosition(window);
 		while (window.pollEvent(event))
