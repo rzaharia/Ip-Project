@@ -5,7 +5,8 @@
 #include "Map.h"
 #include "ParticleSystem.h"
 #include "Menu.h"
-#include "SomeFunctions.h"
+#include "Run.h"
+#include "user.h"
 #include <fstream>
 #include "Car.h"
 #include "DestructionListener.h"
