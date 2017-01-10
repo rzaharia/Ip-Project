@@ -68,7 +68,7 @@ void Car::CreateTireAndFixItToCarBody(b2World* world, b2RevoluteJointDef &bodyJo
 	tires.push_back(tire);
 }
 
-void Car::update(int controlState) {
+void Car::Update(int controlState) {
 
 	for (int i = 0; i < tires.size(); i++)
 		tires[i]->updateFriction();

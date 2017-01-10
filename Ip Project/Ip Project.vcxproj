@@ -73,8 +73,9 @@
     <ClCompile Include="enums.cpp" />
     <ClCompile Include="FixtureUserData.cpp" />
     <ClCompile Include="GroundArea.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="Run.cpp" />
-      <ClCompile Include="user.cpp" />
+    <ClCompile Include="user.cpp" />
     <ClCompile Include="TestBox2D.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
@@ -93,11 +94,12 @@
     <ClInclude Include="fixtureType.h" />
     <ClInclude Include="FixtureUserData.h" />
     <ClInclude Include="GroundArea.h" />
+    <ClInclude Include="Input.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="Run.h" />
-     <ClInclude Include="user.h" />
+    <ClInclude Include="user.h" />
     <ClInclude Include="Tire.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

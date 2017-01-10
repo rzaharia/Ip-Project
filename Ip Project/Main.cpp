@@ -10,6 +10,7 @@
 #include <fstream>
 #include "Car.h"
 #include "DestructionListener.h"
+#include "Input.h"
 const float SCALE = 30.f;
 //#include "Get.cpp"
 int main()
@@ -20,14 +21,18 @@ int main()
 	//SomeFunctions  someFunctions;
 	//someFunctions.initialise(map);
 	//currentMap = map;
+
+	/*
 	Car *car;
 	b2Vec2 Gravity(0.f, 0.f);
 	b2World *World = new b2World(Gravity);
 	DestructionListener destructionListener;
 	World->SetDestructionListener(&destructionListener);
 	car = new Car(World);
-	
-
+	*/
+	Input *game;
+	game = new Input();
+	//To update the view of the car: game->Car->Update(controlState);
 
 	sf::Texture CarTexture;
 	sf::Sprite Sprite;
@@ -119,10 +124,10 @@ mainGame:
 			//car1.setLocationByAdding_Subs(1, 2);
 
 		}
-		World->Step(1 / 60.f, 8, 3);
+		game->World->Step(1 / 60.f, 8, 3);
 		window.clear();
 		map.draw(window);
-		for (b2Body* BodyIterator = World->GetBodyList(); BodyIterator != 0; BodyIterator = BodyIterator->GetNext())
+		for (b2Body* BodyIterator = game->World->GetBodyList(); BodyIterator != 0; BodyIterator = BodyIterator->GetNext())
 		{
 			if (BodyIterator->GetType() == b2_dynamicBody)
 			{

@@ -37,5 +37,5 @@ public:
 	void CreateTireAndFixItToCarBody(b2World* world, b2RevoluteJointDef &bodyJoint, b2Vec2 anchorPosition, bool backTireOrNo);
 	Car(b2World* world);
 	~Car();
-	void update(int state);
+	void Update(int state);
 };
