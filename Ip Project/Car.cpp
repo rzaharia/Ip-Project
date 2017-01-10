@@ -12,13 +12,13 @@ Car::Car(b2World* world) {
 
 	// Create a box body for the car.
 	b2Vec2 vertices[4];
-	vertices[0].Set(3, 0);
-	vertices[1].Set(3, 10);
-	vertices[2].Set(-3, 10);
-	vertices[3].Set(-3, 0);
+	vertices[0].Set(20, 0);
+	vertices[1].Set(20, 40);
+	vertices[2].Set(-20, 40);
+	vertices[3].Set(-20, 0);
 	b2PolygonShape polygonShape;
 	polygonShape.Set(vertices, 4);
-	b2Fixture* fixture = chassis->CreateFixture(&polygonShape, 0.1f);
+	b2Fixture* fixture = chassis->CreateFixture(&polygonShape, 0.5f);
 
 	// Create a joint for the center of the car.
 	b2RevoluteJointDef bodyJoint;
@@ -28,18 +28,20 @@ Car::Car(b2World* world) {
 	bodyJoint.upperAngle = 0;
 	bodyJoint.localAnchorB.SetZero();
 
+	chassis->SetTransform(b2Vec2(20, 20), chassis->GetAngle());
+
 #pragma endregion
 
 #pragma region Create the tires and fix them to the car body.
 
 	// Back left
-	CreateTireAndFixItToCarBody(world, bodyJoint, b2Vec2(-3.0f, 0.75f), true);
+	CreateTireAndFixItToCarBody(world, bodyJoint, b2Vec2(-0.35f, -0.5f), true);
 	// Back right
-	CreateTireAndFixItToCarBody(world, bodyJoint, b2Vec2(3.0f, 0.75f), true);
+	CreateTireAndFixItToCarBody(world, bodyJoint, b2Vec2(0.35f, -0.5f), true);
 	// Front left
-	CreateTireAndFixItToCarBody(world, bodyJoint, b2Vec2(-3.0f, 8.5f), false);
+	CreateTireAndFixItToCarBody(world, bodyJoint, b2Vec2(-0.35f, 0.5), false);
 	// Front right
-	CreateTireAndFixItToCarBody(world, bodyJoint, b2Vec2(3.0f, 8.5f), false);
+	CreateTireAndFixItToCarBody(world, bodyJoint, b2Vec2(0.35f, 0.5), false);
 
 #pragma endregion
 
@@ -102,13 +104,13 @@ void Car::Draw(sf::RenderWindow & window)
 	for (int i = 0; i < 4; i++)
 	{
 		sprites[i].setTexture(texture[0]);
-		sprites[i].setOrigin(SCALE * tires[i]->rubber->GetPosition().x, SCALE * tires[i]->rubber->GetPosition().y);
+		sprites[i].setOrigin(sprites[i].getGlobalBounds().width/2,sprites[i].getGlobalBounds().height/2);//(SCALE * tires[i]->rubber->GetPosition().x/2, SCALE * tires[i]->rubber->GetPosition().y/2);
 		sprites[i].setPosition(SCALE * tires[i]->rubber->GetPosition().x, SCALE * tires[i]->rubber->GetPosition().y);
 		sprites[i].setRotation(tires[i]->rubber->GetAngle() * 180 / b2_pi);
 		window.draw(sprites[i]);
 	}
 	sprites[4].setTexture(texture[1]);
-	sprites[4].setOrigin(SCALE * chassis->GetPosition().x, SCALE * chassis->GetPosition().y);
+	sprites[4].setOrigin(sprites[4].getGlobalBounds().width/2,sprites[4].getGlobalBounds().height/2);//(SCALE * chassis->GetPosition().x/2, SCALE * chassis->GetPosition().y/2);
 	sprites[4].setPosition(SCALE * chassis->GetPosition().x, SCALE * chassis->GetPosition().y);
 	sprites[4].setRotation(chassis->GetAngle() * 180 / b2_pi);
 	window.draw(sprites[4]);
