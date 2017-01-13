@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <Box2D.h>
 #include <iostream>
 #include "box.h"
@@ -11,11 +12,24 @@
 #include "DestructionListener.h"
 #include "Input.h"
 #include "Level.h"
+#include <Windows.h>
 const float SCALE = 30.f;
 #define INITIAL_SCORE 12000.f
 //#include "Get.cpp"
 int main()
 {
+	ShowWindow(GetConsoleWindow(), SW_HIDE);//Hidden console
+
+	sf::Music music;
+	music.openFromFile("textures/End_of_all_hope_Nightwish.ogg");
+	music.setLoop(true);
+	music.play();
+
+	sf::SoundBuffer buffer;
+	buffer.loadFromFile("textures/Shoot.ogg");
+	sf::Sound sound;
+	sound.setBuffer(buffer);
+
 	Level *levelsManager = new Level;
 	levelsManager->LoadLevel();
 	//Run().initialise(levelsManager->(*currentMap));
@@ -39,6 +53,7 @@ int main()
 	levelsManager->InitialiseCarLocation();
 
 	Menu menu(true, "menu_background", "Madness drivers!", 1024, 600);
+	menu.music = &music;
 	sf::Clock clock;
 	sf::Time elapsedTime;
 	bool okToDraw = true;
@@ -112,7 +127,11 @@ mainGame:
 				{
 					levelsManager->game->Keyboard((char)(event.key.code + (int)'a'));
 					if (event.key.code == sf::Keyboard::Space)
+					{
 						levelsManager->TriggerEvent(levelsManager->game->car);
+						if(menu.isSoundEnabled()==true)
+							sound.play();
+					}
 				}
 				if (event.key.code >= 85 && event.key.code <= 93)
 					levelsManager->KeyboardKeyPressed(event.key.code - 84);

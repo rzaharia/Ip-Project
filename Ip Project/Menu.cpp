@@ -48,9 +48,19 @@ int Menu::buttonPressed(int x,int y)//Event for mouse click
 		{///To be modified later
 			int x = i + 1 + (page == menuPage::optionsPage) * 3;
 			if (x == 4)
+			{
 				soundsON = !soundsON;
+			}
 			if (x == 5)
+			{
+				if (musicON == true)
+					music->stop();
+				else {
+					music->openFromFile("textures/End_of_all_hope_Nightwish.ogg");
+					music->play();
+				}
 				musicON = !musicON;
+			}
 			return x;
 		}
 	return 0;
@@ -95,6 +105,11 @@ void Menu::initialiseTextObjects()
 		
 	}
 	page = menuPage::principalPage;
+}
+
+bool Menu::isSoundEnabled()
+{
+	return soundsON;
 }
 
 void Menu::initialiseOptionsMenu()

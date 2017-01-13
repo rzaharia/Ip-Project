@@ -1,6 +1,0 @@
-5
-Raul 10234 35
-George 6785 31
-Andrei 4534 231
-Testosul 232 452
-Castravetele -2200 900
