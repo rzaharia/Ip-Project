@@ -5,30 +5,40 @@
 #include "Map.h"
 #include "ParticleSystem.h"
 #include "Menu.h"
-#include "Run.h"
-#include "user.h"
 #include <fstream>
 #include "Car.h"
 #include "DestructionListener.h"
 #include "Input.h"
+#include "Level.h"
 const float SCALE = 30.f;
+#define INITIAL_SCORE 12000.f
 //#include "Get.cpp"
 int main()
 {
-	Map map;
-	map.Initialise("map");
-	sf::Vector2f carStartLocation = map.GetPlayerStartPositions();
+	Level *levelsManager = new Level;
+	levelsManager->LoadLevel();
 
-	Input *game;
-	game = new Input();
-	//To update the view of the car: game->Car->Update(controlState);
-	game->car->SetTextures("textures/car.png", "textures/wheel.png");
+	sf::Text scoreText;
+	sf::Text timeText;
+	sf::Font font;
+	font.loadFromFile("textures/font.ttf");
+	timeText.setFont(font);
+	timeText.setColor(sf::Color::Red);
+	timeText.setCharacterSize(15);
+	timeText.setPosition(levelsManager->currentMap->finishLocation[1]);
+	scoreText.setFont(font);
+	scoreText.setColor(sf::Color::Red);
+	scoreText.setCharacterSize(19);
+	scoreText.setPosition(levelsManager->currentMap->finishLocation[0]);
 
-	//box car1("car.png", map.GetPlayerStartPositions());
+	//sf::Vector2f playerStartPositions = levelsManager->currentMap->GetPlayerStartPositions();
+	//game->car->SetTransform(playerStartPositions.x/SCALE, playerStartPositions.y/SCALE);
+	float time = 0, timerTime = 0, scoreValue = INITIAL_SCORE;
+	levelsManager->InitialiseCarLocation();
+
 	Menu menu(true, "menu_background", "Madness drivers!", 1024, 600);
 	sf::Clock clock;
 	sf::Time elapsedTime;
-	float time = 0;
 
 	///Menu Window
 	menu.start();
@@ -87,6 +97,7 @@ int main()
 	goto end;
 mainGame:
 	window.create(sf::VideoMode(1024, 767), "Madness drivers!", sf::Style::Titlebar | sf::Style::Close);
+	window.setFramerateLimit(60);
 	while (window.isOpen())
 	{
 		sf::Event event;
@@ -95,11 +106,13 @@ mainGame:
 		{
 			if (event.type == sf::Event::KeyPressed)
 			{
-				game->Keyboard((char)(event.key.code + (int)'a'));
+				levelsManager->game->Keyboard((char)(event.key.code + (int)'a'));
+				if(event.key.code==sf::Keyboard::Space)
+					levelsManager->TriggerEvent(levelsManager->game->car);
 			}
 			else if (event.type == sf::Event::KeyReleased)
 			{
-				game->KeyboardUp((char)(event.key.code + (int)'a'));
+				levelsManager->game->KeyboardUp((char)(event.key.code + (int)'a'));
 			}
 			else if (event.type == sf::Event::Closed)
 				window.close();
@@ -111,18 +124,23 @@ mainGame:
 		}
 
 		elapsedTime = clock.restart();
+		timerTime += elapsedTime.asSeconds();
 		time += elapsedTime.asSeconds();
+		timeText.setString(std::to_string(((int)timerTime * 100) / 100));
+		scoreText.setString(std::to_string(((int)scoreValue*100)/100));
 		if (time > 0.5)
 		{
 			time -= 0.5;
-			//car1.setLocationByAdding_Subs(1, 2);
+			scoreValue -= 3;
 		}
-		game->World->Step(1 / 60.f, 8, 3);
+		levelsManager->game->World->Step(1 / 60.f, 8, 3);
 		window.clear();
 
-		map.draw(window);
-		game->car->Draw(window);
-
+		levelsManager->Draw(window);
+		levelsManager->game->car->Draw(window);
+		levelsManager->Update(scoreValue, timerTime);
+		window.draw(timeText);
+		window.draw(scoreText);
 		window.display();
 	}
 end:

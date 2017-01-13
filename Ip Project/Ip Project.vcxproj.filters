@@ -69,14 +69,11 @@
     <ClCompile Include="DestructionListener.cpp">
       <Filter>Source Files\Models</Filter>
     </ClCompile>
-    <ClCompile Include="Run.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="user.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Input.cpp">
       <Filter>Source Files\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -116,14 +113,14 @@
     <ClInclude Include="DestructionListener.h">
       <Filter>Header Files\Models</Filter>
     </ClInclude>
-    <ClInclude Include="Run.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="user.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Input.h">
       <Filter>Header Files\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

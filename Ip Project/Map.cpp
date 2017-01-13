@@ -88,7 +88,7 @@ Map::mapData Map::GetBoundaryPoints()
 	return data;
 }
 
-bool Map::isIn(sf::Vector2f pos)
+bool Map::isIn(sf::Vector2i pos)
 {
 	for (int i = 0; i < data.numberOfRectangles; i++)
 		if (pos.x >= data.rectangles[i].firstPoint.x && pos.x <= data.rectangles[i].secondPoint.x && 

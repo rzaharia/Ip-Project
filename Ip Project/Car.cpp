@@ -28,8 +28,6 @@ Car::Car(b2World* world) {
 	bodyJoint.upperAngle = 0;
 	bodyJoint.localAnchorB.SetZero();
 
-	chassis->SetTransform(b2Vec2(20, 20), chassis->GetAngle());
-
 #pragma endregion
 
 #pragma region Create the tires and fix them to the car body.
@@ -120,4 +118,14 @@ void Car::SetTextures(std::string pathCarTexture, std::string pathWheelTexture)
 {
 	texture[1].loadFromFile(pathCarTexture);
 	texture[0].loadFromFile(pathWheelTexture);
+}
+
+void Car::SetTransform(float x, float y)
+{
+	chassis->SetTransform(b2Vec2(x, y), chassis->GetAngle());
+}
+
+sf::Vector2i Car::GetPosition()
+{
+	return sf::Vector2i(sf::Vector2i(SCALE * chassis->GetPosition().x, SCALE * chassis->GetPosition().y));
 }

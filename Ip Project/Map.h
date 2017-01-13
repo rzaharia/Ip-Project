@@ -35,9 +35,8 @@ public:
 	sf::Vector2f GetPlayerStartPositions();
 	mapData GetBoundaryPoints();
 	sf::Vector2f finishLocation[2];
-	bool isIn(sf::Vector2f pos);
+	bool isIn(sf::Vector2i pos);
 	void Initialise(std::string path);
-	
 private:
 	short int playerCount;//Used by get location
 	short int numberOfPlayers;

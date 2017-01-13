@@ -5,7 +5,7 @@
 #include <SFML/Graphics.hpp>
 
 // Maximum speed of the car ( the reverse maximum is MAX_SPEED/6.25 )
-#define MAX_SPEED 250.0f
+#define MAX_SPEED 100.0f
 
 // The transmission to all the cars will be on front. ( front wheel-drive )
 #define BACK_TIRE_FORCE_TRACTION 600.0f
@@ -46,4 +46,6 @@ public:
 	void Update(int state);
 	void Draw(sf::RenderWindow & window);
 	void SetTextures(std::string pathCarTexture, std::string pathWheelTexture);
+	void SetTransform(float x,float y);
+	sf::Vector2i GetPosition();
 };
