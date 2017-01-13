@@ -81,6 +81,18 @@ Scores::Scores()
 	textMenu->setString("Scoruri");
 	textMenu->setCharacterSize(85);
 	textMenu->setPosition(400, 20);
+	addText = new sf::Text();
+	textAdded = new sf::Text();
+	addText->setFont((*font));
+	addText->setColor((*textColor));
+	addText->setString("Nume utilizator :");
+	addText->setCharacterSize(40);
+	addText->setPosition(200, 200);
+	textAdded->setFont((*font));
+	textAdded->setColor((*textColor));
+	textAdded->setString("");
+	textAdded->setCharacterSize(40);
+	textAdded->setPosition(600, 200);
 	std::ifstream f("textures/scores.txt");
 	int temp;
 	f >> temp;
@@ -114,6 +126,8 @@ Scores::~Scores()
 	delete(texture);
 	delete(sprite);
 	delete(textMenu);
+	delete(textAdded);
+	delete(textAdded);
 	int temp = allScores.size();
 	for (int i = temp - 1; i >= 0; i--)
 	{
@@ -126,9 +140,63 @@ void Scores::Draw(sf::RenderWindow & window)
 {
 	window.draw((*sprite));
 	window.draw((*textMenu));
-	int temp = allScores.size();
-	for (int i = 0; i < temp; i++)
-		window.draw((*allScores[i]));
+	if (scoreMode == ScoreMode::view)
+	{
+		int temp = allScores.size();
+		for (int i = 0; i < temp; i++)
+			window.draw((*allScores[i]));
+	}
+	else
+	{
+		window.draw((*addText));
+		window.draw((*textAdded));
+	}
+}
+
+void Scores::SetView(bool isView, int score, int time)
+{
+	if (isView == true)
+		scoreMode = ScoreMode::view;
+	else
+	{
+		scoreMode = ScoreMode::add;
+		localScore = score;
+		localTIme = time;
+	}
+}
+
+bool Scores::GetView()
+{
+	return scoreMode == ScoreMode::view;
+}
+
+void Scores::Keybord(int key)
+{
+	std::string textString = textAdded->getString();
+	if (key == 59)
+	{
+		if (textString.size() > 0)
+			textString = textString.substr(0, textString.size() - 1);
+		if (textString == "")
+			textString = "-";
+		textAdded->setString(textString);
+	}
+	else if (key == 58)
+	{
+		if (textString == "")
+			textString = "-";
+		AddScore(textAdded->getString(), localScore, localTIme);
+		SetView(true,0,0);
+	}
+	else
+	{
+		std::string textString = textAdded->getString();
+		if (textString.length() < 10)
+		{
+			textString += (char)(key + (int)'a');
+			textAdded->setString(textString);
+		}
+	}
 }
 
 void Scores::AddScore(std::string username, int score, int time)

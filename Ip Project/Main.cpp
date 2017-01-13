@@ -116,6 +116,13 @@ mainGame:
 				}
 				if (event.key.code >= 85 && event.key.code <= 93)
 					levelsManager->KeyboardKeyPressed(event.key.code - 84);
+				if (levelsManager->score->GetView() == false)
+				{
+					if ((event.key.code >= 0 && event.key.code <= 25) || event.key.code == 59 || event.key.code == 58)
+					{
+						levelsManager->score->Keybord(event.key.code);
+					}
+				}
 			}
 			else if (event.type == sf::Event::KeyReleased && okToDraw == true)
 			{

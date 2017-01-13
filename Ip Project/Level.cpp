@@ -43,6 +43,10 @@ bool Level::Collision(sf::Vector2i carPosition)
 			return true;
 	return false;
 }
+void Level::FinishGame()
+{
+
+}
 /*
 void Level::CreateBox(float x, float y, float width, float height)
 {
@@ -83,6 +87,16 @@ Level::Level()
 
 Level::~Level()
 {
+	UnloadLevel();
+	score->~Scores();
+	delete(score);
+	game->~Input();
+	delete(game);
+}
+
+bool Level::GetViewFromScore()
+{
+	return score->GetView();
 }
 
 void Level::LoadLevel()
@@ -133,8 +147,8 @@ void Level::LoadLevel()
 
 void Level::UnloadLevel()
 {
+	tutorial->~Tutorial();
 	delete(tutorial);
-	delete(score);
 }
 
 void Level::Draw(sf::RenderWindow & window)
@@ -152,7 +166,7 @@ void Level::Draw(sf::RenderWindow & window)
 
 void Level::TriggerEvent(Car *&car)
 {
-	if (currentLevel <= noOfLevels)
+	if (currentLevel < noOfLevels)
 	{
 		if (levels[currentLevel].levelType == 1)
 			if (noOfTeleports > 0)
@@ -165,7 +179,17 @@ void Level::TriggerEvent(Car *&car)
 						sf::Vector2f playerLocation = currentMap->GetPlayerStartPositions();
 						car->SetTransform((int)playerLocation.x / SCALE, (int)playerLocation.y / SCALE);
 					}
-					else std::cout << "You win!";
+					else if (currentLevel == noOfLevels - 1)
+					{
+						score->SetView(false, localScore, localTime);
+						currentView = currenViewForDraw::scoreMenuView;
+					}
+					else {
+						currentLevel++;
+
+
+						//To the next level
+					}
 				}
 			}
 	}
@@ -179,6 +203,8 @@ void Level::InitialiseCarLocation()
 
 void Level::Update(float &scoreValue, float &timerTime)
 {
+	localScore = scoreValue;
+	localTime = timerTime;
 	if (currentMap->isIn(game->car->GetPosition()) == false || Collision(game->car->GetPosition()) == true)
 	{
 		scoreValue -= 500;
@@ -189,25 +215,34 @@ void Level::Update(float &scoreValue, float &timerTime)
 
 void Level::KeyboardKeyPressed(int keyCode)
 {
-	if (keyCode == 1)//F1
+	bool ok = score->GetView();
+	if (ok == true)
 	{
-		if(currentView != currenViewForDraw::tutorialView)
-			currentView = currenViewForDraw::tutorialView;
-		else 
-			currentView = currenViewForDraw::gameView;
-	}
-	else if (keyCode == 2)//F2
-	{
-		if (currentView != currenViewForDraw::scoreMenuView)
-			currentView = currenViewForDraw::scoreMenuView;
-		else
-			currentView = currenViewForDraw::gameView;
-	}
-	else if (keyCode == 6)//F6
-	{
-		if (adminOn == false)
-			adminOn = true;
-		else adminOn = false;
+		if (keyCode == 1)//F1
+		{
+			if (currentView != currenViewForDraw::tutorialView)
+				currentView = currenViewForDraw::tutorialView;
+			else
+				currentView = currenViewForDraw::gameView;
+		}
+		else if (keyCode == 2)//F2
+		{
+			if (currentView != currenViewForDraw::scoreMenuView)
+				currentView = currenViewForDraw::scoreMenuView;
+			else
+				currentView = currenViewForDraw::gameView;
+		}
+		//else if (keyCode == 4)//F4
+		//{
+		//	currentView = currenViewForDraw::scoreMenuView;
+		//	score->SetView(false);
+		//}
+		else if (keyCode == 6)//F6
+		{
+			if (adminOn == false)
+				adminOn = true;
+			else adminOn = false;
+		}
 	}
 }
 

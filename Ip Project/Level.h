@@ -16,8 +16,8 @@ class Level
 		gameView, scoreMenuView, tutorialView
 	};
 	Tutorial *tutorial;
-	Scores *score;
 	currenViewForDraw currentView;
+	int localScore, localTime;
 	bool adminOn = false;
 	const float SCALE = 30.f;
 	short int noOfLevels;
@@ -34,6 +34,7 @@ class Level
 	bool IsInCurrentRectangle(sf::Vector2i carPosition);
 	void Initialise();
 	bool Collision(sf::Vector2i carPosition);
+	void FinishGame();
 	/*void CreateBox(float x, float y,float width, float height);
 	std::vector<b2BodyDef*> bodiesDef;
 	std::vector<b2Body*> bodies;
@@ -41,6 +42,7 @@ class Level
 	std::vector<b2FixtureDef*> fixtureDefs;
 	std::vector<sf::Sprite*> theSPrites;*/
 public:
+	Scores *score;
 	Input *game;
 	short int index = 0;
 	Map *currentMap = new Map();
@@ -50,6 +52,7 @@ public:
 	}levels[10];
 	Level();
 	~Level();
+	bool GetViewFromScore();
 	void LoadLevel();
 	void UnloadLevel();
 	void Draw(sf::RenderWindow &window);

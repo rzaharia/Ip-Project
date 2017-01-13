@@ -1,7 +1,7 @@
 6
-Raul 10234 35
-George 6785 31
-Vasiliu 5432 213
-Andrei 4534 231
-Testosul 232 452
-Castravetele -2200 900
+iisus 10234 35
+obiwan 6785 31
+moise 5432 213
+gandalf 4534 231
+dulapiorul 232 452
+castravetele -2200 900
