@@ -18,12 +18,12 @@ int main()
 	Map map;
 	map.Initialise("map");
 	sf::Vector2f carStartLocation = map.GetPlayerStartPositions();
-
 	Input *game;
 	game = new Input();
 	//To update the view of the car: game->Car->Update(controlState);
 	game->car->SetTextures("textures/car.png", "textures/wheel.png");
-
+	game->car->Initialise(map);
+	Run().initialise(map);
 	//box car1("car.png", map.GetPlayerStartPositions());
 	Menu menu(true, "menu_background", "Madness drivers!", 1024, 600);
 	sf::Clock clock;
