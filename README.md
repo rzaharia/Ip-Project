@@ -8,7 +8,7 @@ Madness Drivers este un soft realizat cu librariile SFML si BOX2D.
 -	Procesor: 400 MHz
 -	Memorie: 128 Mb
 -	Hard Drive: 14 Mb free
--	Memorie Video: 64 Mb
+-	Memorie Video: 128 Mb
 -	Tastatura
 -	Mouse
 
