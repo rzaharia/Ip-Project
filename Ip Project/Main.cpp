@@ -3,6 +3,7 @@
 #include <iostream>
 #include "box.h"
 #include "Map.h"
+#include "Run.h"
 #include "ParticleSystem.h"
 #include "Menu.h"
 #include <fstream>
@@ -17,6 +18,7 @@ int main()
 {
 	Level *levelsManager = new Level;
 	levelsManager->LoadLevel();
+	//Run().initialise(levelsManager->(*currentMap));
 
 	sf::Text scoreText;
 	sf::Text timeText;
@@ -39,7 +41,7 @@ int main()
 	Menu menu(true, "menu_background", "Madness drivers!", 1024, 600);
 	sf::Clock clock;
 	sf::Time elapsedTime;
-
+	bool okToDraw = true;
 	///Menu Window
 	menu.start();
 	sf::RenderWindow window;
@@ -100,47 +102,52 @@ mainGame:
 	window.setFramerateLimit(60);
 	while (window.isOpen())
 	{
+		okToDraw = levelsManager->IsOkeyToDrawDefaultSprites();
 		sf::Event event;
-		//sf::Vector2i mouse = sf::Mouse::getPosition(window);
 		while (window.pollEvent(event))
 		{
 			if (event.type == sf::Event::KeyPressed)
 			{
-				levelsManager->game->Keyboard((char)(event.key.code + (int)'a'));
-				if(event.key.code==sf::Keyboard::Space)
-					levelsManager->TriggerEvent(levelsManager->game->car);
+				if (okToDraw == true)
+				{
+					levelsManager->game->Keyboard((char)(event.key.code + (int)'a'));
+					if (event.key.code == sf::Keyboard::Space)
+						levelsManager->TriggerEvent(levelsManager->game->car);
+				}
+				if (event.key.code >= 85 && event.key.code <= 93)
+					levelsManager->KeyboardKeyPressed(event.key.code - 84);
 			}
-			else if (event.type == sf::Event::KeyReleased)
+			else if (event.type == sf::Event::KeyReleased && okToDraw == true)
 			{
 				levelsManager->game->KeyboardUp((char)(event.key.code + (int)'a'));
 			}
 			else if (event.type == sf::Event::Closed)
 				window.close();
-			/*if (event.type == sf::Event::MouseButtonPressed)
-			{
-				std::cout << mouse.x << "," << mouse.y << "\n";
-				std::cout << map.isIn(mouse.x, mouse.y)<<"\n";
-			}*/
 		}
 
 		elapsedTime = clock.restart();
-		timerTime += elapsedTime.asSeconds();
-		time += elapsedTime.asSeconds();
-		timeText.setString(std::to_string(((int)timerTime * 100) / 100));
-		scoreText.setString(std::to_string(((int)scoreValue*100)/100));
+		if (okToDraw == true)
+		{
+			timerTime += elapsedTime.asSeconds();
+			time += elapsedTime.asSeconds();
+			timeText.setString(std::to_string(((int)timerTime * 100) / 100));
+			scoreText.setString(std::to_string(((int)scoreValue * 100) / 100));
+		}
 		if (time > 0.5)
 		{
 			time -= 0.5;
 			scoreValue -= 3;
 		}
-		levelsManager->game->World->Step(1 / 60.f, 8, 3);
 		window.clear();
-
 		levelsManager->Draw(window);
-		levelsManager->game->car->Draw(window);
-		levelsManager->Update(scoreValue, timerTime);
-		window.draw(timeText);
-		window.draw(scoreText);
+		if (okToDraw == true)
+		{
+			levelsManager->game->World->Step(1 / 60.f, 8, 3);
+			levelsManager->game->car->Draw(window);
+			levelsManager->Update(scoreValue, timerTime);
+			window.draw(timeText);
+			window.draw(scoreText);
+		}
 		window.display();
 	}
 end:

@@ -75,12 +75,14 @@
     <ClCompile Include="GroundArea.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Level.cpp" />
+    <ClCompile Include="Scores.cpp" />
     <ClCompile Include="TestBox2D.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="Tire.cpp" />
+    <ClCompile Include="Tutorial.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -98,6 +100,8 @@
     <ClInclude Include="Map.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="ParticleSystem.h" />
+    <ClInclude Include="Scores.h" />
+    <ClInclude Include="Tutorial.h" />
     <ClInclude Include="user.h" />
     <ClInclude Include="Tire.h" />
   </ItemGroup>

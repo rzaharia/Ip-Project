@@ -105,8 +105,8 @@ void Car::Update(int controlState) {
 
 void Car::Draw(sf::RenderWindow & window)
 {
-	bool canMove=1;
-	sf::Vector2f pos;
+	/*bool canMove=1;
+	sf::Vector2i pos;
 	for (int i = 0; i < 4; i++)
 	{
 		pos.x = SCALE * tires[i]->rubber->GetPosition().x;
@@ -120,7 +120,7 @@ void Car::Draw(sf::RenderWindow & window)
 		canMove = 0;
 	if (!canMove)
 		return;
-
+	*/ // You destroy car draw!!!!
 	for (int i = 0; i < 4; i++)
 	{
 		sprites[i].setTexture(texture[0]);

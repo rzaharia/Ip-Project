@@ -31,18 +31,15 @@
     <Filter Include="Header Files\Models">
       <UniqueIdentifier>{797cf29e-d276-4159-9a03-bfad53dc8a62}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\View">
+      <UniqueIdentifier>{e8729fdf-6e97-4479-b06a-fd7fad3b93bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\View">
+      <UniqueIdentifier>{3d60707d-1846-4fdf-a3e8-322aa82d6503}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Map.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TestBox2D.cpp">
@@ -72,23 +69,29 @@
     <ClCompile Include="Input.cpp">
       <Filter>Source Files\Controllers</Filter>
     </ClCompile>
+    <ClCompile Include="Tutorial.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSystem.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
     <ClCompile Include="Level.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="Scores.cpp">
+      <Filter>Source Files\View</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Map.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Menu.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GroundArea.h">
       <Filter>Header Files\Models</Filter>
     </ClInclude>
@@ -107,9 +110,6 @@
     <ClInclude Include="Car.h">
       <Filter>Header Files\Controllers\Car</Filter>
     </ClInclude>
-    <ClInclude Include="box.h">
-      <Filter>Header Files\Controllers</Filter>
-    </ClInclude>
     <ClInclude Include="DestructionListener.h">
       <Filter>Header Files\Models</Filter>
     </ClInclude>
@@ -119,8 +119,26 @@
     <ClInclude Include="Input.h">
       <Filter>Header Files\Controllers</Filter>
     </ClInclude>
+    <ClInclude Include="Tutorial.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSystem.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
     <ClInclude Include="Level.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Header Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="box.h">
+      <Filter>Header Files\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="Scores.h">
+      <Filter>Header Files\View</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

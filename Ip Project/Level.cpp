@@ -77,6 +77,7 @@ Level::Level()
 	game = new Input();
 	game->car->SetTextures("textures/car.png", "textures/wheel.png");
 	Initialise();
+	score = new Scores();
 }
 
 
@@ -93,6 +94,7 @@ void Level::LoadLevel()
 	if (currentLevel <= noOfLevels)
 	{
 		currentMap->Initialise(levels[currentLevel].levelName);
+		tutorial = new Tutorial(levels[currentLevel].levelName);
 		std::ifstream f("textures/" + levels[currentLevel].levelName + "Objective.txt");
 		if (levels[currentLevel].levelType == 1)
 		{
@@ -131,12 +133,21 @@ void Level::LoadLevel()
 
 void Level::UnloadLevel()
 {
-
+	delete(tutorial);
+	delete(score);
 }
 
 void Level::Draw(sf::RenderWindow & window)
 {
-	currentMap->draw(window);
+	if(IsOkeyToDrawDefaultSprites()==true)
+		currentMap->draw(window);
+	else
+	{
+		if (currentView == currenViewForDraw::tutorialView)
+			tutorial->Draw(window);
+		else if(currentView == currenViewForDraw::scoreMenuView)
+			score->Draw(window);
+	}
 }
 
 void Level::TriggerEvent(Car *&car)
@@ -174,4 +185,33 @@ void Level::Update(float &scoreValue, float &timerTime)
 		timerTime += 20;
 		game->car->SetTransform(pointOfReturn[currentRectangle].x / SCALE, pointOfReturn[currentRectangle].y / SCALE);
 	}
+}
+
+void Level::KeyboardKeyPressed(int keyCode)
+{
+	if (keyCode == 1)//F1
+	{
+		if(currentView != currenViewForDraw::tutorialView)
+			currentView = currenViewForDraw::tutorialView;
+		else 
+			currentView = currenViewForDraw::gameView;
+	}
+	else if (keyCode == 2)//F2
+	{
+		if (currentView != currenViewForDraw::scoreMenuView)
+			currentView = currenViewForDraw::scoreMenuView;
+		else
+			currentView = currenViewForDraw::gameView;
+	}
+	else if (keyCode == 6)//F6
+	{
+		if (adminOn == false)
+			adminOn = true;
+		else adminOn = false;
+	}
+}
+
+bool Level::IsOkeyToDrawDefaultSprites()
+{
+	return currentView == currenViewForDraw::gameView;
 }

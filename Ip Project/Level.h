@@ -8,11 +8,15 @@
 #include "Map.h"
 #include "Car.h"
 #include "Input.h"
+#include "Tutorial.h"
+#include "Scores.h"
 class Level
 {
 	enum currenViewForDraw {
 		gameView, scoreMenuView, tutorialView
 	};
+	Tutorial *tutorial;
+	Scores *score;
 	currenViewForDraw currentView;
 	bool adminOn = false;
 	const float SCALE = 30.f;
@@ -52,5 +56,7 @@ public:
 	void TriggerEvent(Car *&car);
 	void InitialiseCarLocation();
 	void Update(float &scoreValue, float &timerTime);
+	void KeyboardKeyPressed(int keyCode);
+	bool IsOkeyToDrawDefaultSprites();
 };
 #endif
