@@ -1,5 +1,10 @@
 #include "Car.h"
 
+
+void Car::Initialise(Map theMap)
+{
+	map = theMap;
+}
 Car::Car(b2World* world) {
 
 #pragma region Create the car body
@@ -27,6 +32,7 @@ Car::Car(b2World* world) {
 	bodyJoint.lowerAngle = 0;
 	bodyJoint.upperAngle = 0;
 	bodyJoint.localAnchorB.SetZero();
+
 
 #pragma endregion
 
@@ -99,6 +105,22 @@ void Car::Update(int controlState) {
 
 void Car::Draw(sf::RenderWindow & window)
 {
+	bool canMove=1;
+	sf::Vector2f pos;
+	for (int i = 0; i < 4; i++)
+	{
+		pos.x = SCALE * tires[i]->rubber->GetPosition().x;
+		pos.y = SCALE * tires[i]->rubber->GetPosition().y;
+		if (!map.isIn(pos))
+			canMove = 0;
+	}
+	pos.x = SCALE * chassis->GetPosition().x;
+	pos.y = SCALE * chassis->GetPosition().y;
+	if (!map.isIn(pos))
+		canMove = 0;
+	if (!canMove)
+		return;
+
 	for (int i = 0; i < 4; i++)
 	{
 		sprites[i].setTexture(texture[0]);

@@ -2,6 +2,7 @@
 #include <Box2d.h>
 #include <vector>
 #include "Tire.h"
+#include "Map.h"
 #include <SFML/Graphics.hpp>
 
 // Maximum speed of the car ( the reverse maximum is MAX_SPEED/6.25 )
@@ -43,9 +44,11 @@ public:
 	void CreateTireAndFixItToCarBody(b2World* world, b2RevoluteJointDef &bodyJoint, b2Vec2 anchorPosition, bool backTireOrNo);
 	Car(b2World* world);
 	~Car();
+	void Initialise(Map theMap);
 	void Update(int state);
 	void Draw(sf::RenderWindow & window);
 	void SetTextures(std::string pathCarTexture, std::string pathWheelTexture);
-	void SetTransform(float x,float y);
+	void SetTransform(float x, float y);
 	sf::Vector2i GetPosition();
+	Map map;
 };
